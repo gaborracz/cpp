@@ -1,0 +1,35 @@
+#ifndef SEQMAP_H
+#define SEQMAP_H
+
+#include <iostream>
+#include <vector>
+#include <map>
+
+template <class T, class U>
+class seqmap
+{
+public:
+    seqmap(const std::map<T, U>& map)
+    {
+        for (std::pair<const T, U> p : map)
+        {
+            m_seqmap.push_back(std::pair<T, U>(p.first, p.second));
+            std::cout << p.first << " " << p.second << std::endl;
+        }
+    }
+
+    U& at(int idx)
+    {
+        return m_seqmap[idx].second;
+    }
+
+    int size() const
+    {
+        return m_seqmap.size();
+    }
+
+private:
+    std::vector< std::pair<T, U> > m_seqmap;
+};
+
+#endif
